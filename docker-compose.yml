@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    image: wielandseb/bandjournal:api-v3
+    container_name: backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./DB_production:/app/DB
+    environment:
+      - JWT_SECRET=${JWT_SECRET}
+    networks:
+      - app-network
+
+  frontend:
+    image: wielandseb/bandjournal:frontend-v1
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
