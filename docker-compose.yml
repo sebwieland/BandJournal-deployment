@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: wielandseb/bandjournal:api-v3
+    image: wielandseb/concertjournal:api-v4
     container_name: backend
     ports:
       - "8080:8080"
@@ -14,7 +14,7 @@ services:
       - app-network
 
   frontend:
-    image: wielandseb/bandjournal:frontend-v1
+    image: wielandseb/concertjournal:frontend-v3
     container_name: frontend
     ports:
       - "3000:3000"
