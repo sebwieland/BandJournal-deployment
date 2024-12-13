@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: wielandseb/concertjournal:api-v4
+    image: wielandseb/concertjournal:api-v8
     container_name: backend
     ports:
       - "8080:8080"
@@ -10,17 +10,18 @@ services:
       - ./DB_production:/app/DB
     environment:
       - JWT_SECRET=${JWT_SECRET}
-    networks:
-      - app-network
 
   frontend:
-    image: wielandseb/concertjournal:frontend-v3
+    image: wielandseb/concertjournal:frontend-v6
     container_name: frontend
     ports:
-      - "3000:3000"
-    networks:
-      - app-network
+      - "3010:3000"
 
-networks:
-  app-network:
-    driver: bridge
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
